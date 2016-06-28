@@ -1,0 +1,1 @@
+This is my first attempt at a large applcation. It's still a work in progress, a few more things need to be done in order for it to be finalized and the code needs to be restructured in order to be more comprehensive.
