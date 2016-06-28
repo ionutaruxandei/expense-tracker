@@ -1,0 +1,32 @@
+<div id="slHeader">
+    <style type="text/css">
+        #slHeader {
+            text-align: center;
+        }
+        .periodButton {
+            height:30px;
+            width:100px;
+            background-color:#ffcc00;
+            color:#000000;
+            transition: background-color 300ms;
+            border-radius: 25px;
+        }
+
+        .periodButton:hover {
+            background-color:#FFFFFF;
+        }
+        .active {
+            background-color:darkred;
+        }
+        .periodButton:focus {
+            background-color:darkred;
+        }
+    </style>
+    <button id="day"  class="periodButton" ng-class="['periodButton', { active: id === 'day'}]" ng-click="changeLimitTimeUnit('day')">Daily Limits</button>
+    <button id="week" class="periodButton" ng-class="['periodButton', { active: id === 'week'}]" ng-click="changeLimitTimeUnit('week')">Weekly Limits</button>
+    <button id="month" class="periodButton" ng-class="['periodButton', { active: id === 'month'}]" ng-click="changeLimitTimeUnit('month')">Monthly Limits</button>
+
+    <script>
+        var app = angular.module('asd', []);
+    </script>
+</div>

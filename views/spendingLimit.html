@@ -1,0 +1,40 @@
+	<div class="spendingLimit">
+		<style type="text/css">
+			.spendingLimit {
+				height:50px;
+				width:250px;
+				background-color:#b2b2ff;
+				margin:10px auto;
+
+			}
+			.firstRow {
+				overflow : hidden
+			}
+			.secondRow {
+				overflow : hidden
+			}
+			.limitValue {
+				float: right;
+			}
+			.productName {
+				float: left;
+			}
+			.spentText {
+				float: left;
+				margin-bottom:5px;
+			}
+			.currentlySpent {
+				float: right;
+				margin-bottom:5px;
+			}
+		</style>
+		<div class="firstRow">
+			<div class="productName">{{spendingLimit.product}}</div>
+			<div class="limitValue">{{spendingLimit.limitValue}}</div>
+		</div>
+
+		<div class="secondRow">
+			<div class="spentText">Spent this {{id || spendingLimit.type}} :</div>
+			<div class="currentlySpent">{{spendingLimit.currentlySpent}}</div>
+		</div>
+	</div>

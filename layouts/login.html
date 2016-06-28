@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #all {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+        .login-input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        #login-submit {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #cc8400;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #register {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #cc8400;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #login-submit:hover,.form button:active,.form button:focus {
+            background: #e59400;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="asd">
+        <div id="all" ng-controller="login">
+            <form id='login-form' action="/login" method="post">
+                <div>
+                    <label>Username:</label>
+                    <input type="text" class="login-input" name="username"/>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" class="login-input" name="password"/>
+                </div>
+                <div>
+                    <input id="login-submit" type="submit" value="Log In"/>
+                </div>
+            </form>
+            Don't have an account?
+            <br>
+            <button id="register" ng-click="goToRegisterPage()">Register</button>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        var app = angular.module('asd', []);
+        app.controller("login", ['$scope', '$http', function($scope, $http) {
+            $scope.submit = function() {
+                console.log("trying to submit")
+                $http({
+                    method: 'post',
+                    url:'/login',
+                    data : {
+                        username : document.getElementById("user").value,
+                        password : document.getElementById("password").value
+                    }
+                }).then(function successCallback(response){
+
+                }, function errorCallback(response){
+
+                });
+            }
+
+            $scope.goToRegisterPage = function() {
+                console.log("trying to go to register");
+                window.location.href = "/register";
+            }
+        }]);
+    </script>
+    <script src="./directives/login.js"></script>
+
+</body>
+</html>

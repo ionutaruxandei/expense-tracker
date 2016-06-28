@@ -1,0 +1,11 @@
+<div class="addLimitOp">
+	<style type="text/css">
+		.addLimitOp {
+			text-align:center
+		}
+	</style>
+	<div ng-show="limitStatus==='none'">Would you like to set up spending limits for this product?</div>
+	<div ng-repeat="limitType in limitsToBeAdded">
+		<button ng-show="limitStatus==='none'" id="addDaily" type="button" ng-click="addLimit(limitType)">Add {{limitType}} Limit</button>
+	</div>
+</div>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+		<style type="text/css">
+			#selects {
+				text-align:center
+			}
+		</style>
+		</head>
+	<body ng-app="asd">
+	<header></header>
+	<div id="selects">
+		<p>Name:</p>
+		<input id="name" type="text" class="inputField" value=""></input>
+		<p>Quantity:</p>
+		<input id="quantity" type="text" class="inputField" value=""></input>
+
+		<p>Unit Price:</p>
+		<input id="unitPrice" type="text" class="inputField" value=""></input>
+		<p>Category:</p>
+		<input id="category" type="text" class="inputField" value=""></input>
+		<br></br>
+		<button id="submit" type="button" onclick="submitData(this)">Submit</button>
+	</div>
+	</body>
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="./jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./jquery-ui-1.11.4.custom/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="./jquery-ui-1.11.4.custom/jquery-ui.structure.min.css">
+	<link rel="stylesheet" type="text/css" href="./jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
+
+	<script>
+		var app = angular.module('asd', []);
+	</script>
+
+		<script>
+
+	var inputFields = document.getElementsByClassName("inputField");
+	
+	$(function() {
+		$.get( "/options", function( data ) {
+
+  			var names = JSON.parse(data).map(function(prod){
+				return prod.name;
+			});
+  			var unitPrices = JSON.parse(data).map(function(prod){
+				return prod.unitPrice;
+			});
+			var categoryNames = JSON.parse(data).map(function(prod){
+				return prod.category;
+			});
+  			$( "#name" ).autocomplete({
+  				source: names,
+  				change : function(event, productName) {
+					for(var i in names) {
+						if(names[i] == productName.item.value) {
+							document.getElementById("unitPrice").value = unitPrices[i];
+							document.getElementById("category").value = categoryNames[i];
+						}
+					}
+				}
+			});
+		});
+	});
+
+	var submitData = function() {
+		if(validateInput()) {
+
+			var expense = {
+				"name" : document.getElementById("name").value,
+				"quantity" : document.getElementById("quantity").value,
+				"unitPrice" : document.getElementById("unitPrice").value,
+				"totalPrice" : document.getElementById("quantity").value * document.getElementById("unitPrice").value,
+				"category" : document.getElementById("category").value,
+			}
+
+			var receiveResult = function(data) {
+				window.location = '/confirmation?_id=' + JSON.parse(data)._id;
+			}
+			$.ajax({
+  				type: "POST",
+  				url: "/expense",
+  				data: "expense=" + encodeURIComponent(JSON.stringify(expense)),
+  				success: receiveResult,
+  				dataType: "text"
+			});
+
+		}
+	}
+
+	var validateInput = function() {
+		console.log("validating");
+		for(var i=0;i<inputFields.length;i++) {
+			if(inputFields[i].value == "") {
+				alert("please fill all the fields");
+				return false;
+			}
+			
+		}
+		console.log(isNaN(parseInt(document.getElementById("quantity").value)));
+		if(isNaN(parseInt(document.getElementById("quantity").value))) {
+			alert("Quantity must be a number");
+			return false;
+		}
+		if(isNaN(parseFloat(document.getElementById("unitPrice").value))) {
+			alert("Unit Price must be a number");
+			return false;
+		}
+		return true;
+	}
+
+	</script>
+	<script src="./directives/header.js"></script>
+
+</html>

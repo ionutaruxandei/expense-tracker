@@ -1,0 +1,51 @@
+<div id="expense">
+	<style type="text/css">
+
+		.product {
+			height:70px;
+			width:250px;
+			background-color:#b2b2ff;
+			margin:5px auto;
+		}
+		.firstRow {
+			overflow : hidden
+		}
+		.secondRow {
+			overflow : hidden
+		}
+		.thirdRow {
+			overflow : hidden
+		}
+		.unitPrice {
+			float: right;
+		}
+		.name {
+			float: left;
+		}
+		.quantity {
+			float: left;
+			margin-bottom:5px;
+		}
+		.totalPrice {
+			float: right;
+			margin-bottom:5px;
+		}
+		.date {
+			text-align:center
+		}
+	</style>
+	<div class="product">
+		<div class="firstRow">
+			<div class="name">{{product.name}}</div>
+			<div class="unitPrice">{{product.unitPrice}}</div>
+		</div>
+
+		<div class="secondRow">
+			<div class="quantity">{{product.quantity}}</div>
+			<div class="totalPrice">{{product.totalPrice}}</div>
+		</div>
+		<div class="thirdRow">
+			<div class="date">{{product.date}}</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<div class="warnings">
+	<style type="text/css">
+		.warnings {
+			text-align:center
+		}
+	</style>
+	<div ng-show="status==='close'">Careful! You're getting close to the limit!</div>
+	<div class="exceededLimit" ng-show="status==='exceeded'">!!! You've exceeded your {{spendingLimit.type}} limit !!!</div>
+</div>

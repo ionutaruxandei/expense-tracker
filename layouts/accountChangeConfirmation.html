@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #accountChangeConfirmation {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="accountChangeConfirmation">
+        <h5>Your information has been changed.</h5>
+        <h5>You will receive a confirmation email with your new info.</h5>
+        <button id="backButton" onclick="goBack()">Back To My Acount</button>
+        <br>
+        <button id="goToMain" onclick="goToMain()">Go To Main page</button>
+    </div>
+    <script>
+        var goToMain = function() {
+            window.location = "/"
+        }
+        var goBack = function() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

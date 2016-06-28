@@ -1,0 +1,17 @@
+<div id="updateOptions" ng-if="accountPageId == 'update'">
+    <style type="text/css">
+        #updateOptions {
+            text-align:center
+        }
+    </style>
+    <h4>Update Your Account:</h4>
+    Email:
+    <br/>
+    <input id="email" type="text" value={{userData.email}}>
+    <br/>
+    User Name:
+    <br/>
+    <input id="userName" type="text" value={{userData.userName}}>
+    <br/>
+    <button id="submitNewInfo" ng-click="submitNewInfo()">Submit</button>
+</div>

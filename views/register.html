@@ -1,0 +1,23 @@
+<div ng-controller="register">
+    <div id="emailError" ng-show="validationStatus === 'incorrectEmail'">Your email address is incorrect</div>
+    <div id="passwordError" ng-show="validationStatus === 'passwordMatch'">Your passwords do not match</div>
+    <div id="noPassword" ng-show="validationStatus === 'noPassword'">Please add a password</div>
+    <div id="noUsername" ng-show="validationStatus === 'noUserName'">Please add a User Name</div>
+    Your Email:
+    <br/>
+    <input id="email" placeholder="Email"/>
+    <br/>
+    Your User Name:
+    <br/>
+    <input id="userName" placeholder="User Name"/>
+    <br/>
+    Your Password:
+    <br/>
+    <input id="password" placeholder="Password"/>
+    <br/>
+    Confirm Your Password:
+    <br/>
+    <input id="confirmPassword" placeholder="Confirm Password"/>
+    <br/>
+    <button id="submit" ng-click="sendNewUser(this)">Submit</button>
+</div>

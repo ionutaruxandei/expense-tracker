@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #accountTitle {
+            text-align: center;
+        }
+        #passMarch {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div ng-app="asd">
+
+
+
+    <div ng-controller="accountPage">
+        <header></header>
+        <div id="accountTitle"><h4 >My Account</h4></div>
+        <account-header></account-header>
+        <update></update>
+        <div id='passMarch' ng-if="passwordMatch == false">Your passwords do not match!</div>
+        <change-password></change-password>
+        <close-account></close-account>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    var app = angular.module('asd', []);
+    app.controller("accountPage", ['$scope', '$http', function($scope, $http) {
+        $scope.userData = {};
+        var getUserInfo = function() {
+            $http({
+                method:'get',
+                url:'/user'
+            }).then(function successCallback(response) {
+                $scope.userData = response.data;
+                console.log($scope.userData);
+                console.log(response);
+            }, function errorCallback(response) {
+                // TODO ->display an error
+            })
+        }
+        getUserInfo();
+    }]);
+</script>
+<script src="./directives/header.js"></script>
+<script src="./directives/accountHeader.js"></script>
+<script src="./directives/update.js"></script>
+<script src="./directives/changePassword.js"></script>
+<script src="./directives/closeAccount.js"></script>
+</body>
+</html>

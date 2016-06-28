@@ -1,0 +1,31 @@
+<div id="accountHeader">
+    <style type="text/css">
+        #accountHeader {
+            text-align: center;
+        }
+        .optionButton {
+            height:30px;
+            width:100px;
+            background-color:#ffcc00;
+            color:#000000;
+            transition: background-color 300ms;
+            border-radius: 25px;
+        }
+
+        .optionButton:hover {
+            background-color:#FFFFFF;
+        }
+        .active {
+            background-color:darkred;
+        }
+        .optionButton:focus {
+            background-color:darkred;
+        }
+    </style>
+    <button id="update"  class="optionButton" ng-class="['optionButton', { active: accountPageId === 'update'}]" ng-click="changePage('update')">Update Account</button>
+    <button id="changePassword" class="optionButton" ng-class="['optionButton', { active: accountPageId === 'changePassword'}]" ng-click="changePage('changePassword')">Change Password</button>
+    <button id="close" class="optionButton" ng-class="['optionButton', { active: accountPageId === 'close'}]" ng-click="changePage('close')">Close Account</button>
+    <script>
+        var app = angular.module('asd', []);
+    </script>
+</div>
