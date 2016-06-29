@@ -218,9 +218,15 @@ app.put('/user', function(req,res){
 app.delete('/users', function(req, res){
 	var user = req.user;
 	async.parallel([
-		deleteAllExpenses(mongoose.Types.ObjectId(req.user._id)),
-		deleteAllSpendingLimits(mongoose.Types.ObjectId(req.user._id)),
-		deleteUser(mongoose.Types.ObjectId(req.user._id))
+		function(callback) {
+			deleteAllExpenses(mongoose.Types.ObjectId(req.user._id), callback);
+		},
+		function(callback) {
+			deleteAllSpendingLimits(mongoose.Types.ObjectId(req.user._id), callback);
+		},
+		function(callback) {
+			deleteUser(mongoose.Types.ObjectId(req.user._id), callback)
+		}
 	], function() {
 		res.end('done');
 	});
@@ -317,6 +323,10 @@ app.get('/myAccount', require('connect-ensure-login').ensureLoggedIn('/login'), 
 
 app.get('/myAccount/confirmation', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res) {
 	res.sendFile(__dirname + '/layouts/accountChangeConfirmation.html');
+});
+
+app.get('/accountClosed', function(req,res) {
+	res.sendFile(__dirname + '/layouts/accountClosed.html');
 });
 
 app.get('/register', function(req,res){

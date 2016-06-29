@@ -15,7 +15,7 @@ var sendConfirmationMail = function(userData, type) {
         secureConnection : false,
         port : 587,
         auth : {
-            user : "arux.ionut@gmail.com", // add your own
+            user : "", //add your own
             pass : "" // add your own
         }
     });

@@ -8,10 +8,10 @@ var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost/trackerdb';
 
-var deleteUser = function(userId) {
+var deleteUser = function(userId, callback) {
     MongoClient.connect(url, function(err, db) {
         assert.equal(null, err);
-        db.collection('users').remove({_id : userId});
+        db.collection('users').remove({_id : userId}, null, callback);
     });
 
 
