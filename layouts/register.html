@@ -3,18 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        #all {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+        .register-input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        #register-submit {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #cc8400;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #register-button {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #cc8400;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #register-submit:hover,.form button:active,.form button:focus {
+            background: #e59400;
+        }
+    </style>
 </head>
 <body>
     <div ng-app="asd">
-        <form id='register' action='/register' method='post'>
-            <label for='email' >Email Address*:</label>
-            <input type='text' name='email' id='email' maxlength="50" />
-            <label for='userName' >UserName*:</label>
-            <input type='text' name='userName' id='userName' maxlength="50" />
-            <label for='password' >Password*:</label>
-            <input type='password' name='password' id='password' maxlength="50" />
-            <input type='submit' name='Submit' value='Submit' />
-        </form>
+        <div id='all' ng-controller="register">
+            <form id='register' action='/register' method='post'>
+                <h5>Create a new account</h5>
+                <label for='email' >Email Address*:</label>
+                <br>
+                <input type='text' class="register-input" name='email' id='email' maxlength="50" />
+                <br>
+                <label for='userName' >UserName*:</label>
+                <br>
+                <input type='text' name='userName' class="register-input" id='userName' maxlength="50" />
+                <br>
+                <label for='password'>Password*:</label>
+                <br>
+                <input type='password' name='password' class="register-input" id='password' maxlength="50" />
+                <br>
+                <input type='submit' id="register-submit" name='Submit' value='Submit' />
+            </form>
+            Already have an account?
+            <br>
+            <button id="register-button" ng-click="goToLoginPage()">Login</button>
+        </div>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
@@ -68,6 +130,9 @@
                         $scope.validationStatus = "";
                         return true;
                     }
+                }
+                $scope.goToLoginPage = function() {
+                    window.location.href = "/login";
                 }
             }]);
 

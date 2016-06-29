@@ -5,6 +5,9 @@
         }
     </style>
     <h4>Update Your Account:</h4>
+    <div ng-show="validationStatus == 'incorrectEmail'">Your Email Address is incorrect</div>
+    <div ng-show="validationStatus == 'noUserName'">Please Add a Username</div>
+    <div ng-show="validationStatus == 'noEmail'">Please Add an Email Address</div>
     Email:
     <br/>
     <input id="email" type="text" value={{userData.email}}>
