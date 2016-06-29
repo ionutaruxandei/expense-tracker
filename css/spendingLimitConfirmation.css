@@ -1,0 +1,33 @@
+.spendingLimit {
+    height:50px;
+    width:206px;
+    background-color:#b2b2ff;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.firstRow {
+    overflow : hidden
+}
+.secondRow {
+    overflow : hidden
+}
+.limitValue {
+    float: right;
+}
+.productName {
+    float: left;
+}
+.spentText {
+    float: left;
+    margin-bottom:5px;
+}
+.currentlySpent {
+    float: right;
+    margin-bottom:5px;
+}
+#actionButtons {
+    text-align:center
+}
+#mess {
+    text-align:center
+}

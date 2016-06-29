@@ -1,6 +1,0 @@
-{
-	"name" : "String",
-	"quantity" : "int",
-	"unitPrice" : "Float",
-	"Category" : "String",
-}

@@ -3,8 +3,8 @@ var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost/trackerdb';
 var moment = require('moment');
-var weekDayGenerator = require('./weekDayGenerator.js');
-var monthDayGenerator = require('./monthDayGenerator.js');
+var weekDayGenerator = require('./../helpers/weekDayGenerator.js');
+var monthDayGenerator = require('./../helpers/monthDayGenerator.js');
 
 var monday = weekDayGenerator.getMondayAsISOString();
 var sunday = weekDayGenerator.getSundayAsISOString();

@@ -1,0 +1,42 @@
+	<!DOCTYPE html>
+		<html>
+			<head>
+				<title>Page Title</title>
+				<link rel="stylesheet" href="/css/spendingLimits.css">
+
+			</head>
+			<body ng-app="asd">
+				<header></header>
+
+				<div ng-controller="spendingLimits">
+					<spending-limit-header></spending-limit-header>
+					<div id="search"><label>Search: <input ng-model="searchText"></label></div>
+					<div ng-repeat="spendingLimit in limitsToDisplay | filter:searchText">
+						<spending-limit></spending-limit>
+					</div>
+				</div>
+				<br/><br/>
+				
+				
+				<div id="actionButtons">
+					<button id="back" type="button" onclick="back(this)">Back</button>
+				</div>
+
+				<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+				<script>
+					var app = angular.module('asd', []);
+				</script>
+				<script>
+				var back = function() {
+					window.location = '/spendingLimitAdd';
+				}
+				</script>
+				<script src="../directives/spendingLimit.js"></script>
+				<script src="../directives/header.js"></script>
+				<script src="../directives/spendingLimitHeader.js"></script>
+				<script src="../controllers/spendingLimits.js"></script>
+
+			</body>
+		</html>

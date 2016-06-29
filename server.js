@@ -3,30 +3,28 @@ var express = require('express')
 var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var ProductSchema = require('./productsModel');
-var getProducts = require('./getProducts');
-var splitUrl = require('./urlSplitter.js');
-var getOptions = require('./getOptions');
-var mongoose = require('mongoose');
-var SpendingLimitSchmea = require('./spendingLimitModel');
-var getCurrentlySpent = require('./currentlySpentCalculator');
-var getSpendingLimits = require("./getSpendingLimits.js");
-var async = require('async');
-var modifySpendingLimit = require('./modifySpendingLimit.js');
+var ProductSchema = require('./models/productsModel');
+var getProducts = require('./mongo_operations/getProducts');
+var splitUrl = require('./helpers/urlSplitter.js');
+var getOptions = require('./mongo_operations/getOptions');
+var SpendingLimitSchmea = require('./models/spendingLimitModel');
+var getCurrentlySpent = require('./mongo_operations/currentlySpentCalculator');
+var getSpendingLimits = require("./mongo_operations/getSpendingLimits.js");
+var modifySpendingLimit = require('./mongo_operations/modifySpendingLimit.js');
 var _ = require('lodash');
 var UserSchema = require('./models/userModel');
-var tokenGenerator = require('./tokenGenerator.js');
+var tokenGenerator = require('./helpers/tokenGenerator.js');
 var passport = require('passport');
-var sendConfirmationMail = require('./mailer.js');
+var sendConfirmationMail = require('./helpers/mailer.js');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-var modifyUser = require('./modifyUsers.js');
+var modifyUser = require('./mongo_operations/modifyUsers.js');
 var async = require("async");
-var deleteAllExpenses = require('./deleteAllExpenses.js');
-var deleteAllSpendingLimits = require('./deleteAllSpendingLimits.js');
-var deleteUser = require('./deleteUser.js');
+var deleteAllExpenses = require('./mongo_operations/deleteAllExpenses.js');
+var deleteAllSpendingLimits = require('./mongo_operations/deleteAllSpendingLimits.js');
+var deleteUser = require('./mongo_operations/deleteUser.js');
 
 
 mongoose.connect('mongodb://localhost/trackerdb');
@@ -40,6 +38,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); 
 app.use('/views', express.static('views'));
 app.use('/directives', express.static('directives'));
+app.use('/controllers', express.static('controllers'));
+app.use('/css', express.static('css'));
 app.use('/jquery-ui-1.11.4.custom', express.static('jquery-ui-1.11.4.custom'));
 
 app.use(cookieParser());
@@ -276,37 +276,37 @@ app.get('/logout', function(req,res){
 
 
 app.get('/spendingLimitConfirmation', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res) {
-	res.sendFile(__dirname + '/spendingLimitConfirmation.html');
+	res.sendFile(__dirname + '/layouts/spendingLimitConfirmation.html');
 });
 
 app.get('/spendingLimitAdd', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res){
-	res.sendFile(__dirname + '/spendingLimitAdd.html');
+	res.sendFile(__dirname + '/layouts/spendingLimitAdd.html');
 });
 
 app.get('/spendingLimits', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res){
-	res.sendFile(__dirname + '/spendingLimits.html');
+	res.sendFile(__dirname + '/layouts/spendingLimits.html');
 });
 
 app.get('/changeSpendingLimit', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res){
-	res.sendFile(__dirname + '/changeSpendingLimit.html');
+	res.sendFile(__dirname + '/layouts/changeSpendingLimit.html');
 });
 
 app.get('/', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res){
 	console.log(req.user)
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/layouts/index.html');
 });
 
 app.get('/search', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res){
 	console.log(req.user);
-	res.sendFile(__dirname + '/expenseSearch.html');
+	res.sendFile(__dirname + '/layouts/expenseSearch.html');
 });
 
 app.get('/searchResults', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res) {
-	res.sendFile(__dirname + '/searchResults.html');
+	res.sendFile(__dirname + '/layouts/searchResults.html');
 });
 
 app.get('/confirmation', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res) {
-	res.sendFile(__dirname + '/confirmation.html');
+	res.sendFile(__dirname + '/layouts/confirmation.html');
 });
 
 app.get('/expenseFilter.js', require('connect-ensure-login').ensureLoggedIn('/login'), function(req,res) {

@@ -1,0 +1,64 @@
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Page Title</title>
+			<link rel="stylesheet" href="/css/spendingLimitAdd.css">
+			</head>
+		<body ng-app="asd">
+		
+		
+			<header></header>
+
+			<div id="stuff" ng-controller="getOptionsSL">
+				<spending-limit-header></spending-limit-header>
+				<p>Select a Product:</p>
+				<select
+						name="name"
+						ng-model="productNamesOut">
+					<option value="">Please Select</option>
+					<option ng-repeat="option in productNames track by $index" value="{{option}}">{{option}}</option>
+				</select>
+
+			<p>Select a limit:</p>
+			<input type="text" id="limit"/>
+			<tt>{{data.names | json}}</tt><br/>
+			<div ng-show="duplicateLimit" class="ng-hide">You've already set up a limit for {{duplicateProduct}}</div>
+				</br>
+				<div ng-if="isDuplicate === true">
+					<p>Would you like to change this limit?</p>
+					<button id="changeLimit" type="button" ng-click="changeLimit()">Change</button>
+				</div>
+				</br>
+				<button id="backButton" type="button" onclick="back(this)">Back</button>
+			<button id="submit" type="button" ng-click="submitData()">Submit</button>
+			<button id="back" type="button" onclick="allSpendingLimits(this)">View All Spending Limits</button>
+			</div>
+
+
+			
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+			<script>
+			var app = angular.module('asd', []);
+
+
+
+			</script>
+			<script>
+				var allSpendingLimits = function() {
+					window.location = '/spendingLimits';
+				}
+			</script>
+			<script>
+				var back = function() {
+					window.history.back();
+				}
+			</script>
+			<script src="../directives/header.js"></script>
+			<script src="../directives/spendingLimitHeader.js"></script>
+			<script src="../controllers/getOptionsSL.js"></script>
+
+
+		</body>
+
+	</html>

@@ -1,0 +1,40 @@
+.spendingLimit {
+    height:50px;
+    width:206px;
+    background-color:#b2b2ff;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.limitValue {
+    margin-top:5px;
+    float: right;
+}
+.productName {
+    margin-top:5px;
+    float: left;
+}
+.spentText {
+    float: left;
+    margin-bottom:5px;
+}
+.currentlySpent {
+    float: right;
+    margin-bottom:5px;
+}
+.exceededLimit {
+    -webkit-animation: rainbow 1s linear infinite;
+    animation-direction: alternate;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+@-webkit-keyframes rainbow {
+    0% {
+        color: black;
+    }
+    100% {
+        color:red;
+    }
+}
+#actionButtons {
+    text-align:center
+}
